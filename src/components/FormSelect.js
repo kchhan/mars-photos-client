@@ -1,9 +1,10 @@
-import { useController } from 'react-hook-form';
-
 function FormSelect(props) {
-	const { label, name, error, register } = props;
-	const { field } = useController(props);
+	const { label, name, error } = props;
 	const options = JSON.parse(props.options);
+
+	const handleChange = (e) => {
+		props.onSelectUpdate(e.target.value);
+	};
 
 	return (
 		<div className='m-2'>
@@ -11,10 +12,9 @@ function FormSelect(props) {
 				{label}
 			</label>
 			<select
-				ref={register}
 				name={name}
-				{...field}
 				className='block my-1 w-full p-2 text-lg rounded'
+				onChange={handleChange}
 				required
 			>
 				{options.length > 0 ? (

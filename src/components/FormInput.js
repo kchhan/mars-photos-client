@@ -1,17 +1,20 @@
-import { useController } from 'react-hook-form';
-
 function FormInput(props) {
-	const { type, label, name, error, register } = props;
-	const { field } = useController(props);
+	const { type, label, name, error } = props;
+
+	const handleChange = (e) => {
+		props.onInputUpdate(e.target.value);
+	};
+
 	return (
 		<div className='m-2'>
-			<label className='block my-1 w-full font-bold text-lg'>{label}</label>
+			<label className='block my-1 w-full font-bold text-lg'>
+				{label}
+			</label>
 			<input
-				ref={register}
 				type={type}
 				name={name}
-				{...field}
 				className='block my-1 w-full p-2 text-lg border rounded'
+				onChange={handleChange}
 				required
 			></input>
 			{error ? (
