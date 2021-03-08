@@ -13,7 +13,9 @@ function App() {
 	const [sol, setSol] = useState(0);
 	const [loading, setLoading] = useState(false);
 
+	// Rover options
 	const rovers = ['Curiosity', 'Opportunity', 'Spirit'];
+	// Initial camera options
 	const [cameras, setCameras] = useState([
 		'FHAZ',
 		'RHAZ',
@@ -24,22 +26,44 @@ function App() {
 		'NAVCAM',
 	]);
 
+	/**
+	 * Updates rover state after changing select option
+	 * @param {string} rover 
+	 */
 	const updateSelectRover = (rover) => {
+		if (typeof rover !== 'string') return;
+
 		rover = rover.toLowerCase();
 		setRover(rover);
 	};
 
+	/**
+	 * Updates camera state after changing select option
+	 * @param {string} camera 
+	 */
 	const updateSelectCamera = (camera) => {
+		if (typeof camera !== 'string') return;
+
 		camera = camera.toLowerCase();
 		setCamera(camera);
 	};
 
+	/**
+	 * Updates sol state after changing input
+	 * @param {number} sol 
+	 */
 	const updateInputSol = (sol) => {
+		if (typeof sol !== 'number') return;
+		
+		sol = sol.trim();
 		setSol(sol);
 	};
 
+	/**
+	 * Conditionally renders camera options based on rover selection. Renders each time a rover is changed.
+	 */
 	useEffect(() => {
-		if (rover === 'Curiosity') {
+		if (rover === 'curiosity') {
 			setCameras([
 				'FHAZ',
 				'RHAZ',
@@ -54,17 +78,24 @@ function App() {
 		}
 	}, [rover]);
 
+	/**
+	 * Sends query to backend and responds with JSON data
+	 * @param {button} e 
+	 */
 	const onSubmit = (e) => {
 		e.preventDefault();
 
 		const url = `http://localhost:4000/?rover=${rover}&camera=${camera}&sol=${sol}`;
 
+		// Renders loading <li>
 		setLoading(true);
+
 		axios
 			.get(url)
 			.then((response) => {
-				console.log(response.data.photos);
+				// Loading is done. Remove <li>
 				setLoading(false);
+				// Sets response to data state to render
 				setData(response.data.photos);
 			})
 			.catch((error) => {
@@ -73,7 +104,7 @@ function App() {
 	};
 
 	return (
-		<main className='h-screen w-full absolute font-sans leading-normal tracking-normal bg-gray-800'>
+		<main className='w-full min-h-screen absolute font-sans leading-normal tracking-normal bg-gray-800'>
 			{/* Header and Form */}
 			<section className='mt-12'>
 				<Header title={'Mars Photos'} />
@@ -110,19 +141,33 @@ function App() {
 					</button>
 
 					<div className='mx-auto text-center rounded-lg bg-white'>
-						{loading ? 'LOADING...' : ''}
+						{loading ? (
+							<div>
+								<svg
+									className='animate-spin h-5 w-5 mr-3 ...'
+									viewBox='0 0 24 24'
+								></svg>
+								Loading...
+							</div>
+						) : (
+							''
+						)}
 					</div>
 				</form>
 			</section>
 
 			{/* List of pictures from API call */}
-			<section>
-				<ul className="flex justify-around">
-					{data.length > 0
-						? data.map((pData) => {
-								return <Photo data={pData} />;
-						  })
-						: ''}
+			<section className='mt-5'>
+				<ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10'>
+					{data.length > 0 ? (
+						data.map((pData) => {
+							return <Photo key={pData.id} data={pData} />;
+						})
+					) : (
+						<li className='bg-white p-5 col-start-2 col-end-4 text-center rounded-full'>
+							Sorry. There are no photos from this query. Please try again. 
+						</li>
+					)}
 				</ul>
 			</section>
 		</main>

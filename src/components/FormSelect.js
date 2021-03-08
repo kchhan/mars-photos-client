@@ -1,7 +1,11 @@
 function FormSelect(props) {
 	const { label, name, error } = props;
 	const options = JSON.parse(props.options);
-
+	
+	/**
+	 * Sends value to App.js
+	 * @param {string} e 
+	 */
 	const handleChange = (e) => {
 		props.onSelectUpdate(e.target.value);
 	};

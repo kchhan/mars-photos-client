@@ -1,7 +1,7 @@
 function Photo({data}) {
 	return (
-		<li key={data.id}>
-			<img src={data.img_src} alt={data.id} className="w-1/4" />
+		<li className="m-auto w-3/4">
+			<img src={data.img_src} alt={data.id} className="m-auto w-full" />
 		</li>
 	);
 }

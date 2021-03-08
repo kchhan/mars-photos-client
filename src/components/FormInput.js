@@ -1,6 +1,10 @@
 function FormInput(props) {
 	const { type, label, name, error } = props;
 
+	/**
+	 * Sends value to App.js
+	 * @param {sting} e
+	 */
 	const handleChange = (e) => {
 		props.onInputUpdate(e.target.value);
 	};
