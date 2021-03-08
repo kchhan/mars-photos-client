@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import FormInput from './components/FormInput';
 import FormSelect from './components/FormSelect';
+import Footer from './components/Footer';
 import Header from './components/Header';
 import Photo from './components/Photo';
 
@@ -28,7 +29,7 @@ function App() {
 
 	/**
 	 * Updates rover state after changing select option
-	 * @param {string} rover 
+	 * @param {string} rover
 	 */
 	const updateSelectRover = (rover) => {
 		if (typeof rover !== 'string') return;
@@ -39,7 +40,7 @@ function App() {
 
 	/**
 	 * Updates camera state after changing select option
-	 * @param {string} camera 
+	 * @param {string} camera
 	 */
 	const updateSelectCamera = (camera) => {
 		if (typeof camera !== 'string') return;
@@ -50,11 +51,11 @@ function App() {
 
 	/**
 	 * Updates sol state after changing input
-	 * @param {number} sol 
+	 * @param {number} sol
 	 */
 	const updateInputSol = (sol) => {
 		if (typeof sol !== 'number') return;
-		
+
 		sol = sol.trim();
 		setSol(sol);
 	};
@@ -80,7 +81,7 @@ function App() {
 
 	/**
 	 * Sends query to backend and responds with JSON data
-	 * @param {button} e 
+	 * @param {button} e
 	 */
 	const onSubmit = (e) => {
 		e.preventDefault();
@@ -165,11 +166,14 @@ function App() {
 						})
 					) : (
 						<li className='bg-white p-5 col-start-2 col-end-4 text-center rounded-full'>
-							Sorry. There are no photos from this query. Please try again. 
+							Sorry. There are no photos from this query. Please
+							try again.
 						</li>
 					)}
 				</ul>
 			</section>
+
+			<Footer />
 		</main>
 	);
 }
