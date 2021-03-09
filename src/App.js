@@ -13,6 +13,7 @@ function App() {
 	const [camera, setCamera] = useState('fhaz');
 	const [sol, setSol] = useState(0);
 	const [loading, setLoading] = useState(false);
+	const [initialLoad, setInitialLoad] = useState(true);
 
 	// Rover options
 	const rovers = ['Curiosity', 'Opportunity', 'Spirit'];
@@ -51,12 +52,10 @@ function App() {
 
 	/**
 	 * Updates sol state after changing input
-	 * @param {number} sol
+	 * @param {string} sol
 	 */
 	const updateInputSol = (sol) => {
-		if (typeof sol !== 'number') return;
-
-		sol = sol.trim();
+		sol = Number.parseInt(sol);
 		setSol(sol);
 	};
 
@@ -96,6 +95,8 @@ function App() {
 			.then((response) => {
 				// Loading is done. Remove <li>
 				setLoading(false);
+				// Now will show if query is empty
+				setInitialLoad(false);
 				// Sets response to data state to render
 				setData(response.data.photos);
 			})
@@ -154,22 +155,25 @@ function App() {
 							''
 						)}
 					</div>
+
+					{/* Informs if query is empty */}
+					{!initialLoad && data.length === 0 ? (
+						<p className='bg-white p-5 text-center rounded-full'>
+							Sorry. There are no photos from this query. Please
+							try again.
+						</p>
+					) : (
+						''
+					)}
 				</form>
 			</section>
 
 			{/* List of pictures from API call */}
 			<section className='mt-5'>
 				<ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-10'>
-					{data.length > 0 ? (
-						data.map((pData) => {
-							return <Photo key={pData.id} data={pData} />;
-						})
-					) : (
-						<li className='bg-white p-5 col-start-2 col-end-4 text-center rounded-full'>
-							Sorry. There are no photos from this query. Please
-							try again.
-						</li>
-					)}
+					{data.map((pData) => {
+						return <Photo key={pData.id} data={pData} />;
+					})}
 				</ul>
 			</section>
 
