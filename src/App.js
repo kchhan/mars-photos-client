@@ -85,7 +85,7 @@ function App() {
 	const onSubmit = (e) => {
 		e.preventDefault();
 
-		const url = `http://localhost:4000/?rover=${rover}&camera=${camera}&sol=${sol}`;
+		const url = `https://mars-photos-api.herokuapp.com/?rover=${rover}&camera=${camera}&sol=${sol}`;
 
 		// Renders loading <li>
 		setLoading(true);
