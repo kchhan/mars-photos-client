@@ -14,16 +14,6 @@ Look up photos from Mars rovers! Application includes:
 git clone https://github.com/kchhan/mars-photos-client
 ```
 
-#### Create your environment file:
-
-```bash
-cp .env.example .env
-```
-
-#### Update settings in the .env file:
-
--   API_KEY (free api key from https://api.nasa.gov/)
-
 #### Install Javascript dependencies:
 
 ```bash
