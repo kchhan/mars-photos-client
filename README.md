@@ -6,6 +6,9 @@ Look up photos from Mars rovers! Application includes:
 - A wide range of camera options
 - Photos are gathered in JSON from a free API provided by NASA.
 
+## Mars Photos API Server
+Link to Express JS Back End [Link](https://github.com/kchhan/mars-photos-api)
+
 ## Set Up
 
 #### Clone the repository:
