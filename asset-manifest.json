@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/mars-photos-client/static/css/main.f567e458.chunk.css",
-    "main.js": "/mars-photos-client/static/js/main.9e1ce180.chunk.js",
-    "main.js.map": "/mars-photos-client/static/js/main.9e1ce180.chunk.js.map",
+    "main.js": "/mars-photos-client/static/js/main.3e5962c2.chunk.js",
+    "main.js.map": "/mars-photos-client/static/js/main.3e5962c2.chunk.js.map",
     "runtime-main.js": "/mars-photos-client/static/js/runtime-main.03e0c7a9.js",
     "runtime-main.js.map": "/mars-photos-client/static/js/runtime-main.03e0c7a9.js.map",
-    "static/js/2.9222c69e.chunk.js": "/mars-photos-client/static/js/2.9222c69e.chunk.js",
-    "static/js/2.9222c69e.chunk.js.map": "/mars-photos-client/static/js/2.9222c69e.chunk.js.map",
+    "static/js/2.cc93ea39.chunk.js": "/mars-photos-client/static/js/2.cc93ea39.chunk.js",
+    "static/js/2.cc93ea39.chunk.js.map": "/mars-photos-client/static/js/2.cc93ea39.chunk.js.map",
     "index.html": "/mars-photos-client/index.html",
     "static/css/main.f567e458.chunk.css.map": "/mars-photos-client/static/css/main.f567e458.chunk.css.map",
-    "static/js/2.9222c69e.chunk.js.LICENSE.txt": "/mars-photos-client/static/js/2.9222c69e.chunk.js.LICENSE.txt"
+    "static/js/2.cc93ea39.chunk.js.LICENSE.txt": "/mars-photos-client/static/js/2.cc93ea39.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.03e0c7a9.js",
-    "static/js/2.9222c69e.chunk.js",
+    "static/js/2.cc93ea39.chunk.js",
     "static/css/main.f567e458.chunk.css",
-    "static/js/main.9e1ce180.chunk.js"
+    "static/js/main.3e5962c2.chunk.js"
   ]
 }
