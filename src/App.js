@@ -9,6 +9,7 @@ import Photo from './components/Photo';
 
 function App() {
 	const [data, setData] = useState([]);
+	const [errors, setErrors] = useState([]);
 	const [rover, setRover] = useState('curiosity');
 	const [camera, setCamera] = useState('fhaz');
 	const [sol, setSol] = useState(0);
@@ -55,6 +56,8 @@ function App() {
 	 * @param {string} sol
 	 */
 	const updateInputSol = (sol) => {
+		if (typeof sol !== 'string') return;
+
 		sol = Number.parseInt(sol);
 		setSol(sol);
 	};
@@ -97,8 +100,13 @@ function App() {
 				setLoading(false);
 				// Now will show if query is empty
 				setInitialLoad(false);
-				// Sets response to data state to render
-				setData(response.data.photos);
+				if (response.errors) {
+					// if errors from api then set errors
+					setErrors(response.errors);
+				} else {
+					// Sets response to data state to render
+					setData(response.data.photos);
+				}
 			})
 			.catch((error) => {
 				console.log(error);
@@ -165,6 +173,15 @@ function App() {
 					) : (
 						''
 					)}
+
+					{/* List errors from submit if any */}
+					<ul>
+						{errors
+							? errors.map((error) => {
+									return <li>{error.msg}</li>;
+							  })
+							: ''}
+					</ul>
 				</form>
 			</section>
 
